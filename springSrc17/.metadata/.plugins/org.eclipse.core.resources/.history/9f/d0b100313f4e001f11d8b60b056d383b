@@ -1,0 +1,27 @@
+package com.oracle.oBootHello.repository;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.oracle.oBootHello.dto.Member1;
+
+public class MemoryMemberRepository implements MemberRepository {
+
+	private static Map<Long, Member1> store = new HashMap<Long, Member1>();
+	//sequence 발행 -> oracle sequence같은 !
+	private static Long sequence = 0L;
+	
+	@Override
+	public Member1 save(Member1 member1) {
+		
+		return member1;
+	}
+
+	@Override
+	public List<Member1> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
