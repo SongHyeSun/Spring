@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>나는 씌릐 Home</h1>
+	<p>Controller가 선언이 되어 있다면 정적 파일보다 우선 순위가 높다</p>
+		<a href="/members/createMemberForm">회원 가입</a><p>
+		<a href="/members/memberList">회원 목록</a><p>
+</body>
+</html>

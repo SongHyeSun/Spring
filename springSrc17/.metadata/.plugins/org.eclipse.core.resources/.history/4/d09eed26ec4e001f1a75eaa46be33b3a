@@ -1,0 +1,36 @@
+package com.oracle.oBootDbConnect.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.oracle.oBootDbConnect.domain.Member7;
+import com.oracle.oBootDbConnect.service.MemberService;
+
+@Controller
+public class MemberController {
+	private final MemberService memberService;
+	
+	@GetMapping(value = "/members/memberForm")
+	public String createMemberForm() {
+		System.out.println("MemberController /members/memberForm start...");
+		return "members/createMemberForm";
+	}
+	
+	@PostMapping(value = "/members/newSave")
+	public String memberSave(Member7 member) {
+		System.out.println("MemberController memberSave start...");
+		MemberService.memberSave(member);
+		return "redirect:/";
+	}
+	
+	@GetMapping(value = "/members/memberList")
+	public String memberLists(Model model) {
+		List<Member7> memberList = memberService.findMembers();
+		model.addAttribute("members", memberList);
+		return "members/memberList";
+	}
+}

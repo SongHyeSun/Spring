@@ -5,18 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.oracle.oBootHello.dto.Member1;
 
+@Repository
 public class MemoryMemberRepository implements MemberRepository {
 
+	//				부모 객체						자식객체 대입해서 쓴다.
 	private static Map<Long, Member1> store = new HashMap<Long, Member1>();
 	//sequence 발행 -> oracle sequence같은 !
+	//등록할 때 하나씩 올려주자
 	private static Long sequence = 0L;
 	
 	@Override
 	public Member1 save(Member1 member1) {
 		member1.setId(++sequence);
-		// store를 보내서 보여주면 된다.
+		// store를 보내서 보여주면 된다. / member1은 객체 자체가 들어가는 것
 		store.put(member1.getId(), member1);
 		System.out.println("MemoryMemberRepository sequence->"+sequence);
 		System.out.println("MemoryMemberRepository member1.getName()->"+ member1.getName());
@@ -27,7 +32,7 @@ public class MemoryMemberRepository implements MemberRepository {
 	@Override
 	public List<Member1> findAll() {
 		System.out.println("MemoryMemberRepository findAll start...");
-		//store의 value(Member1)
+		//store의 value(Member1) -> Map 방식을 가벼와서, list 형식으로 돌려주면 배열느낌으로 만들 수 있다.
 		List<Member1> listMember = new ArrayList<>(store.values());
 		System.out.println("MemoryMemberRepository findAll slistMember.size()=>"+listMember.size());
 		return listMember;

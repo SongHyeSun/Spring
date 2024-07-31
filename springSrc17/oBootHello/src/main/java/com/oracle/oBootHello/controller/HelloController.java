@@ -22,10 +22,11 @@ public class HelloController {
 		logger.info("start...");
 		model.addAttribute("parameter","boot start...");
 		return "hello";
-		// (DispatcherServlet이 호출)viewResolver--> template/ + hello + html
+		// (DispatcherServlet이 호출)viewResolver--> (prefix)template/ + hello + html
 		// view 단으로 완성해서!
 	}
 	
+	//responseBody는 Httpresult , responsebody를 붙히지 않으면, 자동으로 suffix를 붙혀주어서 html
 	@ResponseBody
 	//GetMapping은 RequestMapping의 자손 -> get인지 post인지 고를 수 있음
 	@GetMapping("ajaxString")
@@ -40,11 +41,13 @@ public class HelloController {
 	public Emp ajaxEmp(@RequestParam("empno") String empno, 
 					   @RequestParam("ename") String ename) {
 		System.out.println("HelloController ajaxEmp empno->"+empno);
+		System.out.println("HelloController ajaxEmp ename->"+ename);
 		logger.info("ename-> {}",ename);
 		Emp emp = new Emp();
 		emp.setEmpno(empno);
 		emp.setEname(ename);
 		
+		//
 		return emp;
 	}
 	

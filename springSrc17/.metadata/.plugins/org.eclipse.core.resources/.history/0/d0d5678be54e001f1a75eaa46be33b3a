@@ -1,0 +1,22 @@
+package com.oracle.oBootDbConnect.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.oracle.oBootDbConnect.domain.Member7;
+
+@Controller
+public class MemberController {
+	
+	@GetMapping(value = "/members/memberForm")
+	public String createMemberForm() {
+		System.out.println("MemberController /members/memberForm start...");
+		return "members/createMemberForm";
+	}
+	
+	@PostMapping(value = "/members/newSave")
+	public String memberSave(Member7 member) {
+		System.out.println("MemberController memberSave start");
+	}
+}
