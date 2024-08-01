@@ -4,4 +4,5 @@
     <typeInfo handle="=oBootHello/C:\/Users\/admin\/.gradle\/caches\/modules-2\/files-2.1\/net.bytebuddy\/byte-buddy\/1.14.18\/81e9b9a20944626e6757b5950676af901c2485\/byte-buddy-1.14.18.jar=/gradle_used_by_scope=/test=/=/test=/true=/&lt;net.bytebuddy.description(ByteCodeElement$Member.class[Member" modifiers="1545" timestamp="1722307804601"/>
     <typeInfo handle="=oBootDbConnect/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.oracle.oBootDbConnect.repository{MemberRepository.java[MemberRepository" modifiers="513" timestamp="1722392681535"/>
     <typeInfo handle="=oBootDbConnect/C:\/Users\/admin\/.gradle\/caches\/modules-2\/files-2.1\/org.mockito\/mockito-core\/5.11.0\/e4069fa4f4ff2c94322cfec5f2e45341c6c70aff\/mockito-core-5.11.0.jar=/gradle_used_by_scope=/test=/=/test=/true=/&lt;org.mockito.plugins(MemberAccessor.class[MemberAccessor" modifiers="1537" timestamp="1722307804516"/>
+    <typeInfo handle="=oBootBoard/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.oracle.oBootBoard.dao{BDao.java[BDao" modifiers="513" timestamp="1722479900950"/>
 </typeInfoHistroy>

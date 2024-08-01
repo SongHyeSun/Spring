@@ -1,0 +1,32 @@
+package com.oracle.oBootBoard.command;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import com.oracle.oBootBoard.dao.BDao;
+import com.oracle.oBootBoard.dto.BDto;
+
+@Service
+public class BExecuteCommand {
+	private final BDao jdbcDao;
+	
+	@Autowired
+	public BExecuteCommand(BDao jdbcDao) {
+		this.jdbcDao = jdbcDao;
+	}
+   
+	public void bContentCmd(Model model) {
+		System.out.println("BExecuteCommand bContentCmd start...");
+		// model이를 Map으로 전환
+	}
+
+	public void bListCmd(Model model) {
+		// modeldmf Map으로 전환
+		ArrayList<BDto> boardDtoList = jdbcDao.boardList();
+		System.out.println("BExecuteCommand boardDtoList.size()-->"+boardDtoList.size());
+		model.addAttribute("boardList", boardDtoList);
+	}
+}

@@ -1,0 +1,21 @@
+package com.oracle.oBootDbConnect;
+
+import javax.sql.DataSource;
+
+import org.springframework.context.annotation.Configuration;
+
+import com.oracle.oBootDbConnect.repository.JdbcMemberRepository;
+import com.oracle.oBootDbConnect.repository.MemberRepository;
+
+@Configuration
+public class SpringConfig {
+	private DataSource dataSource;
+	public SpringConfig(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+	
+	public MemberRepository memberRepository() {
+		//DataSource를 집어넣야 datasource를 가지고 JdbcMemberRepository를 만들 수 있다.
+		return new JdbcMemberRepository(dataSource);
+	}
+}

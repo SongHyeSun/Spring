@@ -12,7 +12,7 @@ import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Repository;
 import com.oracle.oBootDbConnect.domain.Member7;
 
-@Repository
+//@Repository
 public class JdbcMemberRepository implements MemberRepository {
 	//JDBC 사용
 	private final DataSource dataSource;
@@ -25,6 +25,7 @@ public class JdbcMemberRepository implements MemberRepository {
 	private Connection getConnection() {
 		//DataSourceUtil에 의해서 (dataSource -> application.properties에서 가져온 dataSource)
 		//DataSourceUtils는 spring framework에서 제공해주는!@
+		//메모리를 알아서 최적화 시켜주는!! -> 
 		return DataSourceUtils.getConnection(dataSource);
 	}
 	

@@ -1,0 +1,5 @@
+package com.oracle.oBootBoard.command;
+
+public class BExecuteCommand {
+
+}

@@ -1,0 +1,10 @@
+package com.oracle.oBootBoard.command;
+
+import org.springframework.ui.Model;
+
+public class BExecuteCommand {
+	
+	public void bContentCmd(Model model) {
+		System.out.println("BExecuteCommand bContentCmd start...");
+	}
+}

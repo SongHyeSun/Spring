@@ -1,0 +1,46 @@
+package com.oracle.oBootBoard.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import javax.sql.DataSource;
+
+import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Repository;
+
+import com.oracle.oBootBoard.dto.BDto;
+
+@Repository
+public class JdbcDao implements BDao {
+	//JDBC 사용
+	private final DataSource dataSource;
+	
+	public JdbcDao(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+	
+	private Connection getConnection() {
+		return DataSourceUtils.getConnection(dataSource);
+	}
+
+	@Override
+	public ArrayList<BDto> boardList() {
+		ArrayList<BDto> bList = new ArrayList<BDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		System.out.println("BDao boardList start...");
+
+		return bList;
+	}
+
+	@Override
+	public BDto contentView(String strId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,34 @@
+package com.oracle.oBootBoard.controller;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.oracle.oBootBoard.command.BExecuteCommand;
+
+@Controller
+public class BController {
+	private static final Logger logger = LoggerFactory.getLogger(BController.class);
+	private final BExecuteCommand bExecuteService;
+	
+	//이걸 잡아준다는 것은 service가 bean으로 떠 있어야 한다는 것
+	//bExecuteService로 instance 만들어놓았다는 의미
+	@Autowired
+	public BController(BExecuteCommand bExecuteService) {
+		this.bExecuteService = bExecuteService;
+	}
+	
+	//list.jsp에서 불러줌
+	@RequestMapping("list")
+	public String list(Model model) {
+		logger.info("list start...");
+		//callByReference model 객체 (주소값)
+		bExecuteService.bListCmd(model);
+		
+		model.addAttribute("count","50");
+		return "list";
+	}
+}

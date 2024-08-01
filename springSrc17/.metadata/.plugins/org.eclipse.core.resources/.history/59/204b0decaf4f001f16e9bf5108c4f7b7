@@ -1,0 +1,21 @@
+package com.oracle.oBootBoard.dao;
+
+import java.util.ArrayList;
+
+import com.oracle.oBootBoard.dto.BDto;
+
+public class JdbcDao implements BDao {
+
+	@Override
+	public ArrayList<BDto> boardList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BDto contentView(String strId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

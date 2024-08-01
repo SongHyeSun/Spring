@@ -1,0 +1,36 @@
+package com.oracle.oBootBoard.dto;
+
+import java.sql.Timestamp;
+
+//DTO에 값을 담아갈 때, 생성자를 통해서 가져갈 수도 있고 setting을 통해서 가져갈 수도 있다.
+// 여기서는 setting을 통해 가져 간 방식
+public class BDto {
+	int 		bId;
+	String		bName;
+	String		bTitle;
+	String		bContent;
+	Timestamp	bDate;
+	int 		bHit;
+	int 		bGroup;
+	int 		bStep;
+	int 		bIndent;
+	
+	public BDto() {
+		
+	}
+	
+	public void BDto(int bId, String bName, String bTitle, String bContent,
+					 Timestamp bDate, int bHit,
+					 int bGroup, int bStep, int bIndent) {
+		this.bId = bId;
+		this.bName = bName;
+		this.bTitle = bTitle;
+		this.bContent = bContent;
+		this.bDate = bDate;
+		this.bHit = bHit;
+		this.bGroup = bGroup;
+		this.bStep = bStep;
+		this.bIndent = bIndent;
+	}
+	
+}

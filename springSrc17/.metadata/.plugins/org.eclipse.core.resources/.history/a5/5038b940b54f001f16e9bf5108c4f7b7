@@ -1,0 +1,15 @@
+package com.oracle.oBootBoard.command;
+
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import com.oracle.oBootBoard.dao.BDao;
+
+@Service
+public class BExecuteCommand {
+	private BDao jdbcDao;
+   
+	public void bContentCmd(Model model) {
+		System.out.println("BExecuteCommand bContentCmd start...");
+	}
+}
