@@ -19,6 +19,7 @@ public class BDto {
 		
 	}
 	
+	//현재 BDto의 생성자를 여러개 생성해서 overloading
 	public BDto(int bId, String bName, String bTitle, String bContent,
 					 Timestamp bDate, int bHit,
 					 int bGroup, int bStep, int bIndent) {
@@ -31,6 +32,23 @@ public class BDto {
 		this.bGroup = bGroup;
 		this.bStep = bStep;
 		this.bIndent = bIndent;
+	}
+	
+	public BDto(int bId, String bName, String bTitle, String bContent) {
+		this.bId = bId;
+		this.bName = bName;
+		this.bTitle = bTitle;
+		this.bContent = bContent;
+	}
+	
+	public BDto(String bName, String bTitle, String bContent) {
+		this.bName = bName;
+		this.bTitle = bTitle;
+		this.bContent = bContent;
+	}
+	
+	public BDto(int bId) {
+		this.bId = bId;
 	}
 
 	public int getbId() {
@@ -104,6 +122,5 @@ public class BDto {
 	public void setbIndent(int bIndent) {
 		this.bIndent = bIndent;
 	}
-	
 	
 }

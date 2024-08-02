@@ -25,7 +25,7 @@ public class HelloController {
 		// (DispatcherServlet이 호출)viewResolver--> (prefix)template/ + hello + html
 		// view 단으로 완성해서!
 	}
-	
+
 	//responseBody는 Httpresult , responsebody를 붙히지 않으면, 자동으로 suffix를 붙혀주어서 html
 	@ResponseBody
 	//GetMapping은 RequestMapping의 자손 -> get인지 post인지 고를 수 있음

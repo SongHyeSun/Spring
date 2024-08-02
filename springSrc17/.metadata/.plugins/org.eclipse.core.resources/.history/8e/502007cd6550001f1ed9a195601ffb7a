@@ -1,0 +1,25 @@
+package com.oracle.oBootBoard;
+
+import javax.sql.DataSource;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.oracle.oBootBoard.dao.BDao;
+import com.oracle.oBootBoard.dao.JdbcDao;
+
+@Configuration
+public class SpringConfig {
+	private DataSource dataSource;
+	public SpringConfig(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+	
+	@Bean
+	public BDao bDao() {
+		//JDBC
+		return new JdbcDao(dataSource);
+		//Memory 상 저장하는 repository
+//		return new MemoryMemberRepository();
+	}
+}

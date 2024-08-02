@@ -1,0 +1,75 @@
+package com.oracle.oBootBoard.command;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.jdbc.JdbcDataProperties;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import com.oracle.oBootBoard.dao.BDao;
+import com.oracle.oBootBoard.dto.BDto;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+@Service
+public class BExecuteCommand {
+	private final BDao jdbcDao;
+	
+	@Autowired
+	public BExecuteCommand(BDao jdbcDao) {
+		this.jdbcDao = jdbcDao;
+	}
+   
+	public void bContentCmd(Model model) {
+		System.out.println("BExecuteCommand bContentCmd start...");
+		// model이를 Map으로 전환
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		String bId = request.getParameter("bId");
+		BDto board = jdbcDao.contentView(bId);
+		
+		model.addAttribute("mvc_board", board);
+	}
+
+	public void bListCmd(Model model) {
+		// modeldmf Map으로 전환
+		ArrayList<BDto> boardDtoList = jdbcDao.boardList();
+		System.out.println("BExecuteCommand boardDtoList.size()-->"+boardDtoList.size());
+		model.addAttribute("boardList", boardDtoList);
+	}
+
+	public void bModifyCmd(Model model) {
+		System.out.println("BExecuteCommand bModifyCmd start...");
+		// 1. model Map선언
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		
+		// 2. parameter ->  bId, bName , bTitle , bContent
+		int bId = Integer.parseInt(request.getParameter("bId"));
+		String bName = request.getParameter("bName");
+		String bTitle = request.getParameter("bTitle");
+		String bContent = request.getParameter("bContent");
+		
+		//Chapter 01
+		// 3. jdbcDao.modify(bId, bName, bTitle, bContent);
+		//DAO 방식 (예시문제 정도)
+//		jdbcDao.modify(bId, bName, bTitle, bContent);
+		
+		//Chapter2 (DTO 방식)
+		//DTO 방식 (일반적)
+		BDto bDto = new BDto(bId, bName, bTitle, bContent);
+		jdbcDao.modify3(bDto);
+	}
+
+	public void bDeleteCmd(Model model) {
+		System.out.println("BExecuteCommand bDeleteCmd start...");
+		//	 1)  model이용 , map 선언
+		
+	    //	 2) request 이용 ->  bId 추출
+	    //	 3) dao  instance 선언
+	    //	 4) delete method 이용하여 삭제
+		
+	}
+}

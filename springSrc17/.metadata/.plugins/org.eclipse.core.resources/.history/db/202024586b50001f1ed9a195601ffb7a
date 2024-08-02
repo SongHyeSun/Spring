@@ -1,0 +1,42 @@
+package com.oracle.oBootBoard.command;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.jdbc.JdbcDataProperties;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import com.oracle.oBootBoard.dao.BDao;
+import com.oracle.oBootBoard.dto.BDto;
+
+import jakarta.servlet.http.HttpServletRequest;
+
+@Service
+public class BExecuteCommand {
+	private final BDao jdbcDao;
+	
+	@Autowired
+	public BExecuteCommand(BDao jdbcDao) {
+		this.jdbcDao = jdbcDao;
+	}
+   
+	public void bContentCmd(Model model) {
+		System.out.println("BExecuteCommand bContentCmd start...");
+		// model이를 Map으로 전환
+		Map<String, Object> map = model.asMap();
+		HttpServletRequest request = (HttpServletRequest) map.get("request");
+		String bId = request.getParameter("bId");
+		BDto board = jdbcDao.contentView(bId);
+		
+		model.addAttribute("mvc_board", board);
+	}
+
+	public void bListCmd(Model model) {
+		// modeldmf Map으로 전환
+		ArrayList<BDto> boardDtoList = jdbcDao.boardList();
+		System.out.println("BExecuteCommand boardDtoList.size()-->"+boardDtoList.size());
+		model.addAttribute("boardList", boardDtoList);
+	}
+}
