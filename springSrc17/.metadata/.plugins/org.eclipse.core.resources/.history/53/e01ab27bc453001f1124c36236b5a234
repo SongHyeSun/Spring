@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>JPA2 회원 수정</h1>
+	<div class="container">
+	</div><!-- container -->
+</body>
+</html>

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 import com.oracle.oBootBoardWarPorm.dto.BDto;
 
 
-@Repository
+//@Repository 
 public class JdbcDao implements BDao {
 	//JDBC 사용
 	private final DataSource dataSource;
