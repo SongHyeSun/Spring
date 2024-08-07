@@ -45,5 +45,20 @@ public class MemberService {
 		System.out.println("MemberService memberUpdate memberRepository.updateByMember After...");
 		return;
 	}
+
+	public List<Member> getListSearchMember(String searchName) {
+		System.out.println("MemberService getListSearchMember Start...");
+		System.out.println("MemberService getListSearchMember Searchname->"+searchName);
+		List<Member> listMember = memberRepository.findByMember(searchName);
+		System.out.println("MemberService getListSearchMember listMember.size()->"+listMember.size());
+		return listMember;
+	}
+
+	public List<Member> getListFindByMembers(Member member) {
+		System.out.println("MemberService getListFindByMembers Start...");
+		List<Member> listMember = memberRepository.findByMember(member.getId(), member.getSal());
+		System.out.println("MemberService getListAllMember listMember.size()"+listMember.size());
+		return listMember;
+	}
 	
 }

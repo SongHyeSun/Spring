@@ -45,6 +45,10 @@ public class Member {
 	@JoinColumn(name = "team_id")
 	private Team team;
 	
+	// 실제 Column X --> Buffer 용도
 	@Transient //-> dto, entity 단위로 부를 수는 있다.
 	private String teamname;
+	
+	@Transient
+	private Long teamid;
 }

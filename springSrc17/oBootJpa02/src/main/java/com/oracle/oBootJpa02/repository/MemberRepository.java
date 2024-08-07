@@ -9,5 +9,7 @@ public interface MemberRepository {
 	Member 		  memberSave(Member member);
 	List<Member>  findAll();
 	Member findByMember(Long memberId);
-	void updateByMember(Member member);
+	int updateByMember(Member member);
+	List<Member> findByMember(String searchName);
+	List<Member> findByMember(Long id, Long sal);
 }

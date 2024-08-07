@@ -1,0 +1,20 @@
+package com.oracle.oBootJpaApi01.domain;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = "team5")
+//과제
+//1. Sequence
+//	1) 객체 name : team_seq_gen5
+//	2) DB name : team_seq_generator5
+//	3) 초기값 1, 할당 1씩 증가
+public class Team {
+//	2. Id에 PK 잡아주고, member_seq_gen5를 이용해서 , name은 member_id로
+	private Long teamId;
+//	3. name의 이름은 userName
+	private String name;
+}

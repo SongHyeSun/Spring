@@ -1,0 +1,9 @@
+package com.oracle.oBootJpaApi01.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+//Controller + ResponseBody
+@RestController
+public class JpaRestApiController {
+
+}
