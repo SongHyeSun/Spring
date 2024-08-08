@@ -14,6 +14,7 @@ spring:
     hibernate:
       ddl-auto: update
             # @Entity라고 설정되어 있는 것들 만 update, none, create 등등
+            # release 할 때에는 none으로 바꿔주어야 한다!!!!
             
 logging.level:
   org.hibernate.SQL: debug  #logger를 통해 하이버네이트 실행 SQL

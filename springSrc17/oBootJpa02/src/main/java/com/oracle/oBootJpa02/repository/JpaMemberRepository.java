@@ -22,14 +22,18 @@ public class JpaMemberRepository implements MemberRepository {
 
 	@Override
 	public Member memberSave(Member member) {
-		// 1. 팀 저장
+		System.out.println("JpaMemberRepository memberSave  team start...");
+		// 1. 팀 저장ㄴㄹ
 		Team team = new Team();
 		team.setName(member.getTeamname());
 		em.persist(team);
+		System.out.println("JpaMemberRepository memberSave  team end...");
 
 		//2. 회원 저장
+		System.out.println("JpaMemberRepository memberSave  member start...");
 		member.setTeam(team);
 		em.persist(member);
+		System.out.println("JpaMemberRepository memberSave  member end...");
 		return member;
 	}
 

@@ -34,6 +34,7 @@ public class MemberController {
 		System.out.println("member->"+member);
 		System.out.println("member.getName()"+member.getName());
 		memberService.memberSave(member);
+		System.out.println("MemberController memberSave End...");
 		return "redirect:/";
 	}
 	
@@ -76,14 +77,15 @@ public class MemberController {
 	}
 	
 	@GetMapping(value = "findByListMembers")
-	public String findByListMembers(Member member, Model model) {
+	public String findByListMembers(Member member, Model model) { 
 		List<Member> memberList = memberService.getListFindByMembers(member);
 		// List<Member> listMember  = memberRepository.findByMembers(member.getId(),member.getSal());
 		// 검색조건으로 입력한 id 큰거 , sal 큰거
 		
-		System.out.println("memberList.get(0).getName()->"+memberList.get(0).getName());
-		System.out.println("memberList.get(0).getTeam().getName()->"+memberList.get(0).getTeam().getName());
+		System.out.println("memberList.get(0).getName()-> "+memberList.get(0).getName());
+		System.out.println("memberList.get(0).getTeam().getName()-> "+memberList.get(0).getTeam().getName());
 		model.addAttribute("memberList", memberList);
 		return "members/memberList";
 	}
+	
 }

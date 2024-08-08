@@ -1,0 +1,5 @@
+package com.oracle.oBootMybaits01.service;
+
+public interface EmpService {
+	int totalEmp();
+}

@@ -1,0 +1,6 @@
+package com.oracle.oBootMybaits01.dao;
+
+public interface EmpDao {
+	int totalEmp();
+	
+}

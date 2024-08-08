@@ -1,0 +1,24 @@
+package com.oracle.oBootMybaits01.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.oracle.oBootMybaits01.model.Emp;
+import com.oracle.oBootMybaits01.service.EmpService;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Controller
+@RequiredArgsConstructor
+@Slf4j
+public class EmpController {
+	private final EmpService es;
+	
+	@RequestMapping(value = "listEmpStart")
+	public String listEm (Emp emp, Model model) {
+		
+		return "list";
+	}
+}

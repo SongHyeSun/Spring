@@ -13,7 +13,8 @@ import lombok.RequiredArgsConstructor;
 @Repository
 @RequiredArgsConstructor
 public class JpaMemberRepository implements MemberRepository {
-	
+	//JPA는 반드시 Entity Manager를 써야한다. -> 이 이후에 injection이 되어야한다.
+	//										생성자 or @RequiredArgsConstructor로!!
 	private final EntityManager em;
 	
 	//final은 반드시 생성자에 들어가야한다. instance를 받아줄 곳이 없다.
@@ -38,6 +39,29 @@ public class JpaMemberRepository implements MemberRepository {
 									.getResultList();
 		System.out.println("JpaMemberRepository findAll memberList.size()-> "+memberList.size());
 		return memberList;
+	}
+
+	@Override
+	public Member findByMember(Long memberId) {
+		Member member = em.find(Member.class, memberId);
+		return member;
+	}
+
+	@Override
+	public int updateByMember(Member member) {
+		int result = 0;
+		Member member3 = em.find(Member.class, member.getId());
+		if (member3 != null) {
+			// 회원 저장
+			member3.setName(member.getName());
+			member3.setSal(member.getSal());
+			result = 1;
+			System.out.println("JpaMemberRepository updateByMember Update...");
+		} else {
+			result = 0;
+			System.out.println("JpaMemberRepository updateByMember No Exist..");
+		}
+		return result;
 	}
 
 }
