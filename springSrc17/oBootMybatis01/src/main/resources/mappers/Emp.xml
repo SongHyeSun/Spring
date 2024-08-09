@@ -7,4 +7,32 @@
 	<select id="empTotal" resultType="int">
 		SELECT COUNT(*) FROM emp
 	</select>
+	
+	<!-- list mapping -->
+	<select id="tkEmpListAll" parameterType="Emp" resultType="Emp">
+		SELECT * 
+		FROM (
+				SELECT ROWNUM rn, a.* 
+				FROM (
+						SELECT * FROM emp ORDER BY empno
+					  ) a
+			 )
+		WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- detail Emp							resultType가 여러개의 값이면 무조건 DTO로!! -->
+	<select id="tkEmpSelOne" parameterType="int" resultType="Emp">
+		SELECT *
+		FROM emp
+		WHERE empno=#{empno}
+	</select>
+	<update id="tkEmpUpdate" parameterType="Emp">
+		UPDATE emp 
+		SET ename=#{ename}, job=#{job}, sal=#{sal}, 
+		    hiredate=#{hiredate},
+		    <if test="#{comm}!=null"> comm=#{comm},</if>
+		    mgr=#{mgr}, deptno=#{deptno}
+		WHERE empno=#{empno}
+					   
+	</update>
 </mapper>

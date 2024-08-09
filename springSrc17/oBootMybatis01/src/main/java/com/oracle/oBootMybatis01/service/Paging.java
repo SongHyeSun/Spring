@@ -1,5 +1,12 @@
 package com.oracle.oBootMybatis01.service;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class Paging {
 	private int currentPage = 1;
 	private int rowPage = 10;
@@ -19,9 +26,9 @@ public class Paging {
 		//			1				10
 		start = (currentPage-1) * rowPage + 1; //시작 시 1		11
 		end = start + rowPage -1;					//시작 시 10 		20
-//											23			10
-		totalPage = (int) Math.ceil((double)total / rowPage);	//시작 시 3
-											
+//											21			10
+		totalPage = (int) Math.ceil((double)total / rowPage);	//시작 시 3 (ceil 올림)
+//						1				1											
 		startPage = currentPage - (currentPage-1) % pageBlock;	//시작 시 1
 		endPage = startPage + pageBlock -1;	//10
 		

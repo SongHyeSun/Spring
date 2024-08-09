@@ -1,7 +1,11 @@
 package com.oracle.oBootMybatis01.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+
+import com.oracle.oBootMybatis01.model.Emp;
 
 import lombok.RequiredArgsConstructor;
 
@@ -10,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 
 public class EmpDaoImpl implements EmpDao {
-	//Mybatis DB 연동
+	//Mybatis DB 연동 (DI 작업)
 	private final SqlSession session;
 
 	@Override
@@ -28,6 +32,54 @@ public class EmpDaoImpl implements EmpDao {
 		}
 
 		return totEmpCount;
+	}
+
+	@Override
+	public List<Emp> listEmp(Emp emp) {
+		List<Emp> empList = null;
+		System.out.println("EmpDaoImpl listEmp Start...");
+		try {
+			//ID가 unique여야한다. (PK처럼 생각해야한다.)
+			//								Map ID		parameter
+			empList = session.selectList("tkEmpListAll", emp);
+			System.out.println("EmpDaoImpl listEmp empList.size()-> "+empList.size());
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl listEmp e.getMessage()-> "+e.getMessage());
+		}
+		return empList;
+	}
+
+	@Override
+	public Emp detailEmp(int empno) {
+//		2. EmpDao   detailEmp method 선언 
+////    mapper ID   ,    Parameter
+		//emp = session.selectOne("tkEmpSelOne",    empno);
+		//System.out.println("emp-> "+emp1);
+		
+		Emp emp = new Emp();
+		System.out.println("EmpDaoImpl detailEmp Start...");
+		try {
+			emp = session.selectOne("tkEmpSelOne", empno);
+			System.out.println("EmpDaoImpl detailEmp emp-> "+emp);
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl detailEmp e.getMessage()-> "+e.getMessage());
+		}
+		return emp;
+	}
+
+	@Override
+	public int updateEmp(Emp emp) {
+//   2. EmpDao updateEmp method 선언
+									//	    mapper ID   ,    Parameter
+			//updateCount = session.update("tkEmpUpdate",   emp);
+		int updateCount = 0;
+		try {
+			updateCount = session.update("tkEmpUpdate", emp);
+			System.out.println("EmpDaoImpl updateEmp updateCount-> "+updateCount);
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl updateEmp e.getMessage()-> "+e.getMessage());
+		}
+		return updateCount;
 	}
 
 }
