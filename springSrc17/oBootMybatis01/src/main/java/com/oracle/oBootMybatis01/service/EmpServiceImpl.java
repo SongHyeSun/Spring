@@ -1,5 +1,6 @@
 package com.oracle.oBootMybatis01.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -7,7 +8,9 @@ import org.springframework.stereotype.Service;
 import com.oracle.oBootMybatis01.dao.DeptDao;
 import com.oracle.oBootMybatis01.dao.EmpDao;
 import com.oracle.oBootMybatis01.model.Dept;
+import com.oracle.oBootMybatis01.model.DeptVO;
 import com.oracle.oBootMybatis01.model.Emp;
+import com.oracle.oBootMybatis01.model.EmpDept;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,6 +18,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class EmpServiceImpl implements EmpService {
 	
+	//interface가 각각 하나라면, 여러개의 dao를 만들 수 있다.
+	//if EmpDao interface에 JPA dao가 하나 더 연결(implement)되어 있으면, 기존의 myBatis는 annotation 없애주어야 한다.
 	private final EmpDao ed;
 	private final DeptDao dd;
 
@@ -121,6 +126,30 @@ public class EmpServiceImpl implements EmpService {
 		empList = ed.empSearchList3(emp);
 		System.out.println("EmpServiceImpl listSearchEmp empList -> "+empList);
 		return empList;
+	}
+
+	@Override
+	public List<EmpDept> listEmpDept() {
+		System.out.println("EmpServiceImpl listEmpDept Start...");
+		List<EmpDept> listEmpDept = null;
+		
+		listEmpDept = ed.listEmpDept();
+		System.out.println("EmpServiceImpl listEmpDept listEmpDept.size() -> "+listEmpDept.size());
+		return listEmpDept;
+	}
+
+	@Override
+	public void insertDept(DeptVO deptVO) {
+		System.out.println("EmpServiceImpl insertDept Start...");
+		dd.insertDept(deptVO);
+		
+	}
+
+	@Override
+	public void selListDept(HashMap<String, Object> map) {
+		System.out.println("EmpServiceImpl selListDept Start...");
+		dd.selListDept(map);
+		
 	}
 
 }

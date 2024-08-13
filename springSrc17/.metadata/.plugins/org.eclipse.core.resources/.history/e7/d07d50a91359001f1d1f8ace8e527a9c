@@ -1,0 +1,7 @@
+package com.oracle.oBootMybatis01.dao;
+
+import java.util.List;
+
+public interface EmpDeptDao {
+	List<EmpDept> 
+}

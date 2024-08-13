@@ -1,0 +1,126 @@
+package com.oracle.oBootMybatis01.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.oracle.oBootMybatis01.dao.DeptDao;
+import com.oracle.oBootMybatis01.dao.EmpDao;
+import com.oracle.oBootMybatis01.model.Dept;
+import com.oracle.oBootMybatis01.model.Emp;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class EmpServiceImpl implements EmpService {
+	
+	private final EmpDao ed;
+	private final DeptDao dd;
+
+	@Override
+	public int totalEmp() {
+		System.out.println("EmpServiceImpl totalEmp start...");
+		int totEmpCnt = ed.totalEmp();
+		System.out.println("EmpServiceImpl totalEmp totEmpCnt->"+totEmpCnt);
+		return totEmpCnt;
+	}
+
+	@Override
+	public List<Emp> listEmp(Emp emp) {
+		List<Emp> empList = null;
+		System.out.println("EmpServiceImpl listManager Start...");
+		empList = ed.listEmp(emp);
+		System.out.println("EmpServiceImpl listEmp empList.size()-> "+empList.size());
+		return empList;
+	}
+
+	@Override
+	public Emp detailEmp(int empno) {
+		System.out.println("EmpServiceImpl detailEmp start...");
+		Emp emp = ed.detailEmp(empno);
+		System.out.println("EmpServiceImpl detailEmp emp-> "+emp);
+//		1. EmpService안에 detailEmp method 선언
+//		   1) parameter : empno
+//		   2) Return      Emp
+		return emp;
+	}
+
+	@Override
+	public int updateEmp(Emp emp) {
+//      1. EmpService안에 updateEmp method 선언
+//      1) parameter : Emp
+//      2) Return      updateCount (int)
+		System.out.println("EmpServiceImpl updateEmp Start...");
+		int updateCount = 0;
+		updateCount = ed.updateEmp(emp);
+		System.out.println("EmpServiceImpl updateEmp updateCount-> "+updateCount);
+		System.out.println("EmpServiceImpl updateEmp ed.updateEmp After...");
+		return updateCount;
+	}
+
+	@Override
+	public List<Emp> listManager() {
+		System.out.println("EmpServiceImpl listManager Start...");
+		List<Emp> empList = null;
+		empList = ed.listManager();
+		System.out.println("EmpServiceImpl listManager empList.size()-> "+empList.size());
+		System.out.println("EmpServiceImpl listManager ed.listManager After...");
+		
+		return empList;
+	}
+
+	@Override
+	public List<Dept> deptSelect() {
+		System.out.println("EmpServiceImpl deptSelect Start...");
+		List<Dept> deptList = null;
+		deptList = dd.deptSelect();
+		
+		System.out.println("EmpServiceImpl deptSelect deptList.size()-> "+deptList.size());
+		System.out.println("EmpServiceImpl deptSelect dd.deptSelect After...");
+		//tkSelectDept
+		return deptList;
+	}
+
+	@Override
+	public int insertEmp(Emp emp) {
+		System.out.println("EmpServiceImpl insertEmp Start...");
+		int result = ed.insertEmp(emp);
+		
+		System.out.println("EmpServiceImpl insertEmp result-> "+result);
+		System.out.println("EmpServiceImpl insertEmp ed.insertEmp After...");
+		
+		return result;
+	}
+
+	@Override
+	public int deleteEmp(int empno) {
+		System.out.println("EmpServiceImpl deleteEmp Start...");
+		int result = ed.deleteEmp(empno);
+
+		System.out.println("EmpServiceImpl insertEmp result-> "+result);
+		System.out.println("EmpServiceImpl insertEmp ed.insertEmp After...");
+		
+		return result;
+	}
+
+	@Override
+	public int condTotalEmp(Emp emp) {
+		System.out.println("EmpServiceImpl condTotalEmp Start...");
+		int totEmpCnt = ed.condTotalEmp(emp);
+		System.out.println("EmpServiceImpl condTotalEmp totEmpCnt -> "+totEmpCnt);
+		return totEmpCnt;
+	}
+
+	@Override
+	public List<Emp> listSearchEmp(Emp emp) {
+		System.out.println("EmpServiceImpl listSearchEmp Start...");
+		List<Emp> empList = null;
+		// 1. DAO  ed.empSearchList3(emp);
+        // 2. Mapper selectList("tkEmpSearchList3", emp);
+		empList = ed.empSearchList3(emp);
+		System.out.println("EmpServiceImpl listSearchEmp empList -> "+empList);
+		return empList;
+	}
+
+}

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.oracle.oBootMybatis01.model.Emp;
+import com.oracle.oBootMybatis01.model.EmpDept;
 
 import lombok.RequiredArgsConstructor;
 
@@ -148,6 +149,19 @@ public class EmpDaoImpl implements EmpDao {
 			System.out.println("EmpDaoImpl empSearchList3 e.getMessage()-> "+e.getMessage());
 		}
 		return empList;
+	}
+
+	@Override
+	public List<EmpDept> listEmpDept() {
+		List<EmpDept> listEmpDept = null;
+		System.out.println("EmpDaoImpl listEmpDept Start...");
+		try {
+			listEmpDept = session.selectList("tkListEmpDept");
+			System.out.println("EmpDaoImpl listEmpDept listEmpDept size()-> "+listEmpDept.size());
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl listEmpDept e.getMessage()-> "+e.getMessage());
+		}
+		return listEmpDept;
 	}
 
 }
