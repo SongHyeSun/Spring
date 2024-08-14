@@ -1,0 +1,47 @@
+package com.oracle.oBootMybatis01.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.oracle.oBootMybatis01.domain.Member;
+import com.oracle.oBootMybatis01.repository.MemberJpaRepository;
+
+import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+@Transactional
+public class MemberJpaService {
+	private final MemberJpaRepository memberJpaRepository;
+
+	public void join(Member member) {
+		System.out.println("MemberJpaService join start...");
+		System.out.println("MemberJpaService join member-> "+member);
+		memberJpaRepository.save(member);
+		
+	}
+
+	public List<Member> getListAllMember() {
+		System.out.println("MemberJpaService getListAllMember start...");
+		List<Member> listMember = null;
+		listMember = memberJpaRepository.findAll();
+		return listMember;
+	}
+
+	public Optional<Member> findById(Long memberId) {
+		System.out.println("MemberJpaService findById Start....");
+		//controller에서 optional로 보내주었기 때문에 똑같이 선언해주어야 한다.
+		Optional<Member> member = memberJpaRepository.findById(memberId);
+		return member;
+	}
+
+	public void memberUpdate(Member member) {
+		System.out.println("MemberJpaService memberUpdate Start....");
+		memberJpaRepository.updateByMember(member);
+		
+	}
+	
+}
