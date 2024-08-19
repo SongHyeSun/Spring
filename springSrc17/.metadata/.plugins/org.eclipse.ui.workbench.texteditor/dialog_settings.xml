@@ -6,11 +6,13 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
 			<item value="package com.oracle.oBootJpa02.domain;"/>
 			<item value="orm"/>
 		</list>
 		<list key="replacehistory">
+			<item value="requestMappingHandlerMapping"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

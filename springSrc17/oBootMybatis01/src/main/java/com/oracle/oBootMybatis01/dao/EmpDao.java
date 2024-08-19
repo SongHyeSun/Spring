@@ -7,13 +7,14 @@ import com.oracle.oBootMybatis01.model.EmpDept;
 
 public interface EmpDao {
 	int totalEmp();
-	List<Emp> listEmp(Emp emp);
-	Emp detailEmp(int empno);
-	int updateEmp(Emp emp);
-	List<Emp> listManager();
-	int insertEmp(Emp emp);
-	int deleteEmp(int empno);
-	int condTotalEmp(Emp emp);
-	List<Emp> empSearchList3(Emp emp);
-	List<EmpDept> listEmpDept();	
+	List<Emp> 		listEmp(Emp emp);
+	Emp 			detailEmp(int empno);
+	int 			updateEmp(Emp emp);
+	List<Emp> 		listManager();
+	int 			insertEmp(Emp emp);
+	int 			deleteEmp(int empno);
+	int 			condTotalEmp(Emp emp);
+	List<Emp> 		empSearchList3(Emp emp);
+	List<EmpDept> 	listEmpDept();
+	String 			deptName(int deptno);	
 }

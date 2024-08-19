@@ -1,0 +1,9 @@
+package com.oracle.oBootMybatis01.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class EmpRestController {
+	
+	private final EmpService es;
+}

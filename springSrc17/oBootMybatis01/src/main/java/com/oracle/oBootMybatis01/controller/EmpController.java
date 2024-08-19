@@ -2,6 +2,7 @@ package com.oracle.oBootMybatis01.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -11,7 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.oBootMybatis01.model.Dept;
 import com.oracle.oBootMybatis01.model.DeptVO;
@@ -429,9 +432,11 @@ public class EmpController {
 	//interCeptor 진행 Test
 	@RequestMapping(value = "doMemberList")
 	public String doMemberList(Model model, HttpServletRequest request) {
+		System.out.println("EmpController doMemberList Start...");
 		String ID = (String) request.getSession().getAttribute("ID");
 		System.out.println("doMemberList Test Start ID -> "+ID);
 		Member1 member1 = null;
+		// 로그인 한 사람만 보여주고 싶은 페이지일 때!!
 		// Member1 List Get Service
 		// Service, DAO --> listMem
 		// Mapper --> listMember1
@@ -439,7 +444,62 @@ public class EmpController {
 		List<Member1> listMem = es.listMem(member1);
 		model.addAttribute("ID", ID);
 		model.addAttribute("listMem", listMem);
-		return "doMemberList";
+		
+		System.out.println("EmpController doMemberList End...");
+		return "doMemberList";	//User 존재하면 User 이용 조회 Page
 	}
 	
+	//	ajaxForm Test 입력하면
+	@RequestMapping(value = "ajaxForm")
+	public String ajaxForm(Model model) {
+		System.out.println("ajaxForm Start...");
+		return "ajaxForm";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "getDeptName")
+	public String getDeptName(Dept dept, Model model) {
+		System.out.println("EmpController getDeptName Start...");
+		System.out.println("deptno-> "+dept.getDeptno());
+		String deptName = es.deptName(dept.getDeptno());
+		System.out.println("deptName-> "+deptName);
+		//mapper --> EmpDept(tkDeptName)
+		System.out.println("EmpController getDeptName End...");
+		return deptName;
+	}
+	
+	//Ajax List Test
+	@RequestMapping(value = "listEmpAjaxForm")
+	public String listEmpAjaxForm(Model model) {
+		Emp emp = new Emp();
+		System.out.println("EmpController listEmpAjaxForm Start...");
+		
+		//Parameter emp --> Page만 추가 Setting
+		emp.setStart(1);	//시작 시 1
+		emp.setEnd(10);		//시작 시 10
+		
+		List<Emp> listEmp = es.listEmp(emp);
+		System.out.println("EmpController listEmpAjaxForm listEmp.size()-> "+listEmp.size());
+		model.addAttribute("result", "kkk");
+		model.addAttribute("listEmp", listEmp);
+		
+		return "listEmpAjaxForm";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "empSerializeWrite")
+	public Map<String, Object> empSerializeWrite(@RequestBody @Valid Emp emp) {
+//	public Map<String, Object> empSerializeWrite(@Valid Emp emp) {
+		System.out.println("EmpController empSerializeWrite Start...");
+		System.out.println("EmpController empSerializeWrite emp-> "+emp);
+		int writeResult = 1;
+		// int writeResult = kkk.writeEmp(emp);
+		// String followingProStr = Integer.toString(followingPro);
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		System.out.println("EmpController empSerializeWrite writeResult-> "+writeResult);
+		
+		resultMap.put("writeResult", writeResult);
+		return resultMap;
+	}
 }
