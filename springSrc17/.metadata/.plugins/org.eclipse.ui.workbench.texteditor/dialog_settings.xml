@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="delete"/>
 		<list key="findhistory">
+			<item value="delete"/>
 			<item value="package com.oracle.oBootJpa02.domain;"/>
 			<item value="orm"/>
 		</list>

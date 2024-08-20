@@ -1,11 +1,15 @@
 package com.oracle.oBootMybatis01.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oracle.oBootMybatis01.model.Dept;
+import com.oracle.oBootMybatis01.model.Emp;
 import com.oracle.oBootMybatis01.model.SampleVO;
 import com.oracle.oBootMybatis01.service.EmpService;
 
@@ -46,5 +50,27 @@ public class EmpRestController {
 		System.out.println("EmpRestController @RestController sendVO3 START..");
 		List<Dept> deptList = es.deptSelect();
 		return deptList;
+	}
+	
+	//결과 text로 보내지는 것
+	@RequestMapping("/empnoDelete")
+	public String empnoDelete(Emp emp) {
+		System.out.println("EmpRestController @RestController empnoDelete START..");
+		System.out.println("EmpRestController @RestController empnoDelete emp-> "+emp);
+		int delStatus = es.deleteEmp(emp.getEmpno());
+		String delStatusStr = Integer.toString(delStatus);
+		return delStatusStr;
+	}
+	
+	//결과 --> 객체로 전달 (객체는 DTO로 or Map으로!)
+	@RequestMapping("/empnoDelete03")
+	public Map<String, Object> empnoDelete03(Emp emp) {
+		System.out.println("EmpRestController @RestController empnoDelete03 START..");
+		System.out.println("EmpRestController @RestController empnoDelete03 emp-> "+emp);
+		int delStatus = es.deleteEmp(emp.getEmpno());
+//		String delStatusStr = Integer.toString(delStatus);
+		Map<String, Object> resultMap = new HashMap<>();
+		resultMap.put("delStatus", delStatus);
+		return resultMap;
 	}
 }

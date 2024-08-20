@@ -10,6 +10,6 @@
 	Image : ${savedName } <p>
 	UpLoad Image : <img alt="UpLoad Image" src="${pageContext.request.contextPath }/upload/${savedName }">
 	
-	<a href="uploadFileDelete?delFile=${savedName }">upLoad 삭제 Test</a>
+	<p><a href="uploadFileDelete?delFile=${savedName }">upLoad 삭제 Test</a>
 </body>
 </html>

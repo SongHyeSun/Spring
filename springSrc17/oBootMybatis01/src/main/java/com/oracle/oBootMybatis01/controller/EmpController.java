@@ -468,7 +468,7 @@ public class EmpController {
 		return deptName;
 	}
 	
-	//Ajax List Test
+	//Ajax List Test (ajax를 수행하기 위한 준비 화면 -> @ResponseBody 안붙혀도 된다.)
 	@RequestMapping(value = "listEmpAjaxForm")
 	public String listEmpAjaxForm(Model model) {
 		Emp emp = new Emp();
@@ -488,18 +488,85 @@ public class EmpController {
 	
 	@ResponseBody
 	@RequestMapping(value = "empSerializeWrite")
+			//		string으로 받아온 것을 json형태로 날라와도 @RequestBody가 있으면 알아서 key, value로 넘어가진다.
 	public Map<String, Object> empSerializeWrite(@RequestBody @Valid Emp emp) {
+		//map 방식으로 주는 이유: 상대방이 받을 때 string 방식으로 받는 것 보다 객체 방식으로 받는게 더 편해서
 //	public Map<String, Object> empSerializeWrite(@Valid Emp emp) {
 		System.out.println("EmpController empSerializeWrite Start...");
 		System.out.println("EmpController empSerializeWrite emp-> "+emp);
 		int writeResult = 1;
 		// int writeResult = kkk.writeEmp(emp);
+		// writeResult가 1이나 0이 왔다는 전제 하에 to string으로 
 		// String followingProStr = Integer.toString(followingPro);
 		
 		Map<String, Object> resultMap = new HashMap<>();
 		System.out.println("EmpController empSerializeWrite writeResult-> "+writeResult);
 		
+		//객체로 만들어준 것 (하나 이상의 값을 보내줄 수 있다)
+		//map방식이면, 요구사항을 받아서 바로 해결할 수 있다.
 		resultMap.put("writeResult", writeResult);
+//		resultMap.put("anyResult", "anyR");
 		return resultMap;
 	}
+	
+	@RequestMapping(value = "listEmpAjaxForm2")
+	public String listEmpAjaxForm2(Model model) {
+		System.out.println("EmpController listEmpAjaxForm2 Start...");
+		Emp emp = new Emp();
+		// Parameter emp --> Page만 추가 setting
+		emp.setStart(1);	//시작 시 1
+		emp.setEnd(15);		//시작 시 15
+		List<Emp> listEmp = es.listEmp(emp);
+		System.out.println("EmpController listEmpAjaxForm2 listEmp.size()"+ listEmp.size());
+		
+		model.addAttribute("listEmp", listEmp);
+		
+		return "listEmpAjaxForm2";
+	}
+	
+	@RequestMapping(value = "listEmpAjaxForm3")
+	public String listEmpAjaxForm3(Model model) {
+		System.out.println("EmpController listEmpAjaxForm3 Start...");
+		Emp emp = new Emp();
+		// Parameter emp --> Page만 추가 setting
+		emp.setStart(1);	//시작 시 1
+		emp.setEnd(15);		//시작 시 15
+		List<Emp> listEmp = es.listEmp(emp);
+		System.out.println("EmpController listEmpAjaxForm3 listEmp.size()"+ listEmp.size());
+		
+		model.addAttribute("listEmp", listEmp);
+		
+		return "listEmpAjaxForm3";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "empListUpdate")
+	public Map<String, Object> empListUpdate(@RequestBody @Valid List<Emp> listEmp) {
+		System.out.println("EmpController empListUpdate Start...");
+		int updateResult = 1;
+		
+		for (Emp emp : listEmp) {
+			System.out.println("EmpController empListUpdate  emp-> "+emp);
+			//int writeResult = kkk.listUpdateEmp(emp);
+		}
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		resultMap.put("updateResult", updateResult);
+		return resultMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "transactionInsertUpdate")
+	public String transactionInsertUpdate(Emp emp, Model model) {
+		System.out.println("EmpController transactionInsertUpdate Start....");
+		
+		//memberInsert 성공과 실패
+		int returnMember = es.transactionInsertUpdate();
+		System.out.println("EmpController transactionInsertUpdate returnMember=> "+returnMember);
+		String returnMemberString = String.valueOf(returnMember);
+		
+		return returnMemberString;
+	}
+	
 }

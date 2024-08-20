@@ -15,9 +15,13 @@
 		$.ajax(
 				{
 					url:"<%=request.getContextPath()%>/getDeptName",
+					//parameter 명칭(반드시 DTO에 정의된 명칭): parameter 값
+					//여러개의 값을 넘겨주기 위해서, {deptno : pDeptno, dname : pDname}
 					data:{deptno : pDeptno},
 					dataType:'text',
+					// function에 들어가는 deptName의 dataType이라는 뜻 -> text
 					success:function(deptName){
+						//		명칭은 뭘 써도 상관 없지만, 아래에 일관되게 같은 parameter 명이어야 한다.
 						//alert("success ajax Data-> "+deptName);
 						$('#deptName').val(deptName);	/* input Tag */
 						$('#msg').html(deptName);		/* span id Tag */
@@ -37,6 +41,7 @@
 					 data:{deptno : pDeptno},
 					 dataType:'json',
 					 success:function(sampleVo){
+						 //json은 객체명.dto명 -> 값을 불러와준다.
 						 resultStr = sampleVo.firstName + " " + sampleVo.lastName + " " + sampleVo.mno;
 						 alert("ajax getDept resultStr-> "+resultStr);
 						 $('#RestDept').val(resultStr);		// input tag
@@ -47,12 +52,15 @@
 	
 	function empWriteBtn() {
 		var empno = $('#empno').val();
+		
 		//var sendData = JSON.stringify($('#empTrans').serialize());
 		//alert('sendData-->'+sendData);
-
+		
+		//	 empTrans id를 전부 serializeArray로 배열값으로 넣어주겠다는 의미
 		var sendData = $('#empTrans').serializeArray();
 		
 		//		JSON Data Conversion
+		//sendData3가 아래 jsonParse에서 받아온 obj (객체로 넘어온 값)
 		sendData3 = jsonParse(sendData);
 		alert('sendData3-->'+sendData3);
 		console.log('sendData3-->'+sendData3);
@@ -61,6 +69,8 @@
 			url: 'empSerializeWrite',
 			type: 'POST',
 			contentType: 'application/json;charset=UTF-8',
+			//sendData3를 json 형태의 string data로 만들어서 보내주겠다는 의미
+			//이렇게 되면, 상대방은 parsing만 해주면 data를 편하게 쓸 수 있다.
 			data: JSON.stringify(sendData3),
 			dataType:'json',
 			success: function(response) {
@@ -78,8 +88,7 @@
 			jQuery.each(sendData2, function() {
 				//name과 value를 obj 객체로 setting을 해준 후
 				obj[this.name] = this.value;
-				alert('this.name->' + this.name);
-				alert('this.value->' + this.value);
+				alert('this.name->' + this.name, ', this.value->' + this.value);
 			});
 		}
 			return obj;
