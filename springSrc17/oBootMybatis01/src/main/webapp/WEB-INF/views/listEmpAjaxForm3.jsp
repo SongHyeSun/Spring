@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
+
+	// listEmpAjaxForm3.jsp 에서 수정 전 작업 sample
 	function getEmpListUpdateTest() {
 		alert("getEmpListUpdateTest Run....")
 		// Group 번호 가져오기
@@ -29,6 +31,7 @@
 		}
 	}
 	
+	// listEmpAjaxForm3.jsp 에서 수정 후 작업 sample
 	//JavaScript에서 empList를 수정한 Data를 JSON 데이터로 전환 empController로 보내기 예제
 	function getEmpListUpdate() {
 		alert("getEmpListUpdate Run....")

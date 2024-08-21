@@ -66,6 +66,8 @@
 		$.ajax(
 				{
 					url:"/empnoDelete03",
+					//위: 물리적 삭제
+					//아래: 화면 단(view) 삭제
 					data:{empno : selEmpno,
 						  ename : selEname},
 					dataType:'json',

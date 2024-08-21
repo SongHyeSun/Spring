@@ -166,7 +166,7 @@
 			}
 		alert("sendUser Start..")  	
 		// 자바스크립트의 값을 JSON 문자열로 변환
-		// Client --> Server
+		// Client --> Server (ws.send로 보내준다.)
 		ws.send(JSON.stringify(userOption));
 
 		//자기자신 창을 닫습니다.
